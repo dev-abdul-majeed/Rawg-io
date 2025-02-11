@@ -1,5 +1,6 @@
 import {
   Button,
+  Heading,
   HStack,
   Image,
   List,
@@ -19,6 +20,9 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data: genres, isLoading, error } = useGenres();
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
       {isLoading && <Spinner size="lg" />}
       {error && <Text textColor="red.300">{error} while fetching genres</Text>}
       <List>
@@ -29,6 +33,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 boxSize="32px"
                 src={getCroppedUrl(genre.image_background)}
                 borderRadius={2}
+                objectFit="cover"
               />
               <Button
                 fontSize="lg"
@@ -37,6 +42,8 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 onClick={() => {
                   onSelectGenre(genre);
                 }}
+                whiteSpace="normal"
+                textAlign="left"
               >
                 {genre.name}
               </Button>
