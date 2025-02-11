@@ -18,13 +18,15 @@ interface Props {
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data: genres, isLoading, error } = useGenres();
+  if (error)
+    return <Text textColor="red.300">{error} while fetching genres</Text>;
+
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
         Genres
       </Heading>
       {isLoading && <Spinner size="lg" />}
-      {error && <Text textColor="red.300">{error} while fetching genres</Text>}
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id} paddingY={2}>
