@@ -5,7 +5,18 @@ const config: ThemeConfig = {
 };
 
 const theme = extendTheme({
-  config,
+  config: {
+    ...config,
+    disableTransitionOnChange: false,
+  },
+  styles: {
+    global: {
+      body: {
+        transitionProperty: "all",
+        transitionDuration: "slow",
+      },
+    },
+  },
   colors: {
     gray: {
       50: "#f9f9f9",
